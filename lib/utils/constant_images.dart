@@ -1,0 +1,1 @@
+String weatherIcon='assets/images/weather_app.png';
