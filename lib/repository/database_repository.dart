@@ -11,7 +11,7 @@ class DatabaseRepository {
     try {
       return await databaseService.fetchData();
     } catch (e) {
-      return null;
+       throw Exception('Failed to fetch: $e');
     }
   }
 
@@ -20,7 +20,7 @@ class DatabaseRepository {
       return await databaseService.insertData(modalClass);
       
     } catch (e) {
-      return false;
+      throw Exception('Failed to insert: $e');
     }
   }
 
@@ -29,12 +29,16 @@ class DatabaseRepository {
       return await databaseService.deleteData(modalClass);
 
     } catch (e) {
-      return false;
+      throw Exception('Failed to delete: $e');
     }
   }
 
   Future<bool> deleteAlll() async {
-    print('DELETE ALL CALLED');
+   try {
+      print('DELETE ALL CALLED');
     return await databaseService.deleteAll();
+   } catch (e) {
+      throw Exception('Failed to delete all: $e');
+   }
   }
 }

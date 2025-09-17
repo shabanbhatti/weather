@@ -55,13 +55,17 @@ class DbStateNotifier extends StateNotifier<DbState> {
   }
 
   Future<void> deleteAlll() async {
-    print('DELETE ALL CALLED');
+   try {
+      print('DELETE ALL CALLED');
     var data = await databaseRepository.deleteAlll();
 
     if (data) {
       await fetch();
       
     }
+   } catch (e) {
+     state = DbErrorState(error: e.toString());
+   }
   }
 }
 
